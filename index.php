@@ -10,7 +10,6 @@ use Fw\Core\Config;
 
 require_once('fw/init.php');
 
-$k = new Config;
-$array = $k->get('db/login');
+$array =  Config::get('db/login');
 
 echo $array;
