@@ -9,14 +9,14 @@ class Config {
     public static function get($keys) {
         self::$data = require_once('fw/config.php');
 
-        $array = self::$data;
+        $result = self::$data;
         $keys = explode('/',$keys);
 
         foreach($keys as $key) {
-            $array = $array[$key];
+            $result = $result[$key];
         }
 
-        return $array;
+        return $result;
     }
 
 }

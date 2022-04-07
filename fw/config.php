@@ -1,7 +1,7 @@
 <?php
 
 $config = [
-    'db' => ['login' => 'Nekoma']
+    'views' => ['id' => 'templates']
 ];
 
 return $config;
