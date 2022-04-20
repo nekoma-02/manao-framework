@@ -17,4 +17,4 @@ if (!defined('CORE') || CORE !== true) exit;
 
 </head>
 <body>
-<h1>Hello world</h1>
+<h1>Header</h1>

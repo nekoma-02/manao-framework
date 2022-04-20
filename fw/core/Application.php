@@ -11,11 +11,17 @@ class Application
     private $__components = [];
     private $pager = null;
     private $template = null;
+    private $request = null;
+    private $server = null;
+
+    private const BASE_CLASS_URL = 'Fw\Core\Component\Base';
 
     private function __construct()
     {
         $this->pager = Pager::getInstance();
         $this->template = TEMPLATE_PATH . Config::get('views/id');
+        $this->request = new Request;
+        $this->server = new Server;
     }
 
 
@@ -46,5 +52,32 @@ class Application
         ob_clean();
     }
 
+    public function getRequest() : Request {
+        return $this->request;
+    }
 
+    public function getServer() : Server {
+        return $this->server;
+    }
+
+    public function includeComponent(string $component, string $template, array $params) {
+        $filePath = $_SERVER['DOCUMENT_ROOT'] . '/' . str_replace(':','/components/',$component) . '/.class.php';
+        require_once $filePath;
+
+        if (!isset($this->__components[$component])) {
+            
+            $declaredClasses = get_declared_classes();
+            foreach ($declaredClasses as $class) {
+                if (is_subclass_of($class, self::BASE_CLASS_URL)) {
+                    $this->__components[$component] = $class;
+                    break;
+                }
+            }
+        }
+
+        $class = $this->__components[$component];
+        $componentName = str_replace('fw:','',$component);
+        $comp = new $class($componentName,$template,$params);
+        $comp->executeComponent();
+    }
 }

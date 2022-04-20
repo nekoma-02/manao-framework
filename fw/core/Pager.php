@@ -8,9 +8,9 @@ class Pager
 {
     use SingletonTrait;
     private $container;
-    private const JS_MACROS = "#FW_PAGE_JS#";
-    private const CSS_MACROS = "#FW_PAGE_CSS#";
-    private const STR_MACROS = "#FW_PAGE_STR#";
+    public const JS_MACROS = "#FW_PAGE_JS#";
+    public const CSS_MACROS = "#FW_PAGE_CSS#";
+    public const STR_MACROS = "#FW_PAGE_STR#";
 
 
     public function addJs(string $src)
@@ -45,12 +45,20 @@ class Pager
         $res = [];
         if (array_key_exists('js',$this->container)) {
             $res[self::JS_MACROS] = implode("\n", $this->container['js']);
+        } else {
+            $res[self::JS_MACROS] = '';
         }
         if (array_key_exists('css',$this->container)) {
             $res[self::CSS_MACROS] = implode("\n", $this->container['css']);
         }
+        else {
+            $res[self::CSS_MACROS] = '';
+        }
         if (array_key_exists('str',$this->container)) {
             $res[self::STR_MACROS] = implode("\n", $this->container['str']);
+        }
+        else {
+            $res[self::STR_MACROS] = '';
         }
         if (array_key_exists('property',$this->container)) {
             return array_merge($res, $this->container['property']);
@@ -70,8 +78,8 @@ class Pager
 
     public static function showHead()
     {
-        echo self::JS_MACROS . '<br>';
-        echo self::CSS_MACROS . '<br>';
-        echo self::STR_MACROS . '<br>';
+        echo self::JS_MACROS . ' ';
+        echo self::CSS_MACROS . ' ';
+        echo self::STR_MACROS . ' ';
     }
 }
