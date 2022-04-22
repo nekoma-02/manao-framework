@@ -1,6 +1,6 @@
 <?php
 
-namespace Fw\Components\News;
+namespace Fw\Components\Interface;
 
 use Fw\Core\Component\Base;
 
@@ -14,7 +14,7 @@ class Component extends Base {
     }
 
     public function executeComponent() {
-        $this->result['title'] = $this->params['title'];
+        $this->result = $this->params;
         $this->template->render($this->result);
     }
 }

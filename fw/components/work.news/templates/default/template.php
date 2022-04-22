@@ -1,6 +1,11 @@
 <div>
     <h1 id='h1_news'><?= $result['title']; ?></h1>
     <pre>
+        ------ 22.04.2022 -------
+        1) Добавлен bootstrap в fw/views/templates/header
+        2) Сделан header и footer
+        3) Создан компонент fw/components/interface.form
+        4) Компонент fw/components/interface.form добавлен на index.php
         ------ 20.04.2022 -------
         1) Создан класс Directory как базовый класс для Request Server
         2) Создан класс Request extends Directory
@@ -22,8 +27,5 @@
         1) Создан конфиг и класс для работы с ним
         2) Создана функция авто регистрации классов
     </pre>
-    
-    <form action="">
         <button type="submit" id='btn'>click for check js</button>
-    </form>
 </div>

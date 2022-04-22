@@ -70,7 +70,7 @@ class Application
             foreach ($declaredClasses as $class) {
                 if (is_subclass_of($class, self::BASE_CLASS_URL)) {
                     $this->__components[$component] = $class;
-                    break;
+                    
                 }
             }
         }
